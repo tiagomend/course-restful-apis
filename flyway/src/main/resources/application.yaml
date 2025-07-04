@@ -1,0 +1,39 @@
+spring:
+  application:
+    name: flyway  # Nome da aplicação, usado em logs e identificação no Spring Cloud.
+
+  profiles:
+    active:
+    - test  # Define o perfil ativo como 'test'. Pode ser usado para carregar configurações específicas desse ambiente.
+
+  # Configuração da fonte de dados
+  datasource:
+    driver-class-name: org.h2.Driver  # Driver JDBC utilizado para conectar ao banco H2 em memória.
+    url: jdbc:h2:mem:testdb           # URL de conexão com banco H2 em memória, útil para testes.
+    username: sa                      # Usuário do banco de dados (padrão do H2).
+    password:                         # Senha do banco de dados (vazia por padrão no H2).
+
+  # Configuração do JPA e Hibernate
+  jpa:
+    hibernate:
+      ddl-auto: none                 # Define a estratégia de geração do schema (nenhuma ação será tomada).
+      # Opções possíveis:
+      # validate     -> Apenas valida o schema existente.
+      # update       -> Atualiza o schema conforme as entidades.
+      # create       -> Cria o schema a cada execução.
+      # create-drop  -> Cria e depois dropa o schema ao final.
+      # none         -> Não realiza nenhuma ação sobre o schema.
+    show-sql: false                  # Se true, exibe as queries SQL no console.
+    open-in-view: false             # Se true, mantém a EntityManager aberta durante a renderização da view (desencorajado em APIs REST).
+
+  h2:
+    console:
+      enabled: true                 # Habilita o console web do H2 (acesso pelo navegador).
+      path: /h2-console             # Define o caminho de acesso ao console do H2.
+
+# Configuração de logging
+logging:
+  level:
+    root: warn                     # Define o nível de log padrão da aplicação como WARN (aviso).
+    '[br.com.tiagomendonca.logging]': debug  # Define nível de log DEBUG para o pacote específico.
+

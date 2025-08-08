@@ -1,0 +1,7 @@
+﻿CREATE TABLE books (
+  id BIGINT PRIMARY KEY AUTO_INCREMENT,
+  author TEXT,
+  launch_date DATETIME NOT NULL,
+  price DECIMAL(15,2) NOT NULL,
+  title TEXT
+);
